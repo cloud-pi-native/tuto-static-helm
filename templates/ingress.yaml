@@ -38,6 +38,8 @@ spec:
                   number: {{ $svcPort }}
           {{- end }}
     {{- end }}
+{{- end }}
+{{- if .Values.ingress.secret.enabled -}}
 ---
 apiVersion: v1
 data:

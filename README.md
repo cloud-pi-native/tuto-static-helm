@@ -61,3 +61,16 @@ resources: # Contraintes limit et requests sur les ressources du POD
     cpu: "500m"  
 
 ```
+
+## Utilisation dans DSO
+
+Lors de l'utilisation dans la console DSO, une fois le projet [démonstration static](https://github.com/dnum-mi/dso-tuto-static) construit, il faut ajouter un dépôt syncrhonisé de type dépôt d'infrastructure qui pointe vers ce repo github puis aller dans ArgoCD et modifier depuis l'application ArgoCD :
+App Details -> Parameters
+ - image.repository : Adapter avec le nom de son image / organisation / projet
+ - ingress.host : choisir une URL de déploiement non utilisée
+
+Problèmes connus :
+
+Les noms de ressources dans Kubernetes doivent faire moins de 63 caractères or DSO génère les noms des ressources à partir du nom de l'organisation et du nom du projet. Il peut arriver que les noms générés fassent plus de 63 caractères et empêchent le déploiement. Depuis Helm, il est possible de surcharger le nom par les 2 varaibles suivantes :
+  - nameOverride
+  - fullnameOverride

@@ -10,14 +10,12 @@ spec:
   selector:
     matchLabels:
       {{- include "demo-static-helm.selectorLabels" . | nindent 6 }}
+      app: dso-demo-static
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
         {{- include "demo-static-helm.selectorLabels" . | nindent 8 }}
+        app: dso-demo-static
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

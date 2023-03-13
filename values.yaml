@@ -18,9 +18,10 @@ ingress:
   enabled: true
   secret:
     enabled: true
+    name: my-app-tls-secret
   host: dso-demo-static-helm.apps.ocp4-8.infocepo.com
   tls:
-    secretName: dso-demo-static-tls
+    secretName: my-app-tls-secret
 
 resources: 
   limits:
